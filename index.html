@@ -9,22 +9,23 @@
 </head>
 
 <body>
-    <div class="main">
+    <div class="main" id="justtakingss">
         <div class="imgmain" id="imgBackH">
             <img class="logo" id="hImage"
                 src="LaLiga_EA_Sports_2023_Vertical_Logo-Photoroom.png">
         </div>
         <div class="home_name" id="hhN">HNY</div>
         <div class="tempScore">
-            <div class="score" id="scS">0</div>
+            <div class="score" id="scSH">0</div>
         </div>
         <div class="timer" id="timerDisplay">LIVE</div>
         <div class="away_name" id="aaN">PIE</div>
         <div class="tempScore">
-            <div class="score" id="scS">0</div>
+            <div class="score" id="scSA">0</div>
         </div>
         <div class="extra_time" id="exxt">+7</div>
     </div>
+
     <div class="nicha">
         <div class="timDiv">
             <div class="tminn">
@@ -44,6 +45,16 @@
             <div class="timsecc">
                 <label for="autoMin" class="jLab">Auto Minutes</label>
                 <input type="number" class="minSec" id="autoMin">
+            </div>
+        </div>
+        <div class="timDiv">
+            <div class="tminn">
+                <label for="homeG" class="jLab">HOME GOALS</label>
+                <input type="number" class="minSec" id="homeG">
+            </div>
+            <div class="timsecc">
+                <label for="awayG" class="jLab">AWAY GOALS</label>
+                <input type="number" class="minSec" id="awayG">
             </div>
         </div>
         <div class="NDiv">
@@ -111,6 +122,7 @@
             <button id="spBtn" class="Btnn">Stop</button>
             <button id="rBtn" class="Btnn">Reset</button>
             <button id="cBtn" class="Btnn">Copy</button>
+            <button id="SSbtn" class="Btnn">SS</button>
             <div class="lal">Manual</div>
             <div class="divCAS" id="adiv">
                 <div class="circle"></div>
@@ -119,6 +131,7 @@
             <div class="lal">Auto</div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 
     <script src="script.js"></script>
 </body>

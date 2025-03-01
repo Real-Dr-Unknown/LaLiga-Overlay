@@ -30,6 +30,7 @@ let start = document.getElementById('sBtn')
 let coppy = document.getElementById('cBtn')
 let reset = document.getElementById('rBtn')
 let stopp = document.getElementById('spBtn')
+let ss = document.getElementById('SSbtn')
 let exx = document.getElementById('exxt')
 let clockk = document.getElementById('timerDisplay')
 let cdiv = document.getElementById('adiv')
@@ -252,18 +253,18 @@ function autoMinsetter() {
 }
 
 function homeGG() {
-    let hhgg = document.getElementById('hhGG')
+    let hhgg = document.getElementById('scSH')
     hhgg.textContent = document.getElementById('homeG').value
-    updateConfig({ home: document.getElementById('home_Goals').value });
+    updateConfig({ home_Goals: document.getElementById('homeG').value });
     if (Math.random() < 0.25 && showADS) {
         window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
     }
 }
 
 function awayGG() {
-    let aagg = document.getElementById('awGG')
+    let aagg = document.getElementById('scSA')
     aagg.textContent = document.getElementById('awayG').value
-    updateConfig({ home: document.getElementById('away_Goals').value });
+    updateConfig({ away_Goals: document.getElementById('awayG').value });
     if (Math.random() < 0.25 && showADS) {
         window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
     }
@@ -536,6 +537,26 @@ function loadConfigFromURL() {
         configData = JSON.parse(decodeURIComponent(configString));
     }
 }
+
+ss.onclick = function() {
+    const targetElement = document.getElementById('justtakingss');
+    if (!targetElement) {
+        console.error('Target element not found');
+        return;
+    }
+
+    domtoimage.toPng(targetElement)
+        .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'screenshot.png';
+            link.click();
+        })
+        .catch(function (error) {
+            console.error('Error during screenshot:', error);
+        });
+};
+
 
 loadConfigFromURL();
 
