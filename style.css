@@ -69,6 +69,13 @@ body {
     height: 50px;
     justify-content: center;
     align-items: center;
+    padding-top: 3px;
+}
+
+#exxtexxt {
+    margin-right: auto;
+    height: 30px;
+    display: none;
 }
 
 .away_name {
@@ -112,13 +119,13 @@ body {
     font-size: 28px;
     font-weight: 900;
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
+    display: none;
     width: 40px;
     height: 40px;
     justify-content: center;
     align-items: center;
     float: right;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 /* Input Feilds Stype */

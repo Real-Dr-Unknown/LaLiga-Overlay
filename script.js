@@ -34,8 +34,13 @@ let ss = document.getElementById('SSbtn')
 let exx = document.getElementById('exxt')
 let clockk = document.getElementById('timerDisplay')
 let cdiv = document.getElementById('adiv')
+let pextimer = document.getElementById('exxtexxt')
 
 
+let waitext = 0;
+let exisRunning = false;
+let exmin = 0;
+let exsec = 0;
 let showADS = false;
 let ajC = null;
 let fClera = null;
@@ -308,6 +313,7 @@ document.getElementById('aLogo').addEventListener("input", aLSetter)
 document.getElementById('autoSwitcher').addEventListener("click", autooS)
 
 async function checker() {
+    exxt();
     if (!temp) {
         puranatime = Date.now() / (1000 * 60);
     }
@@ -319,7 +325,7 @@ async function checker() {
         await new Promise(r => setTimeout(r, 30000));
 
         if (Math.round((Date.now() / (1000 * 60)) - puranatime) >= 19) {
-
+            exx.style.display = 'none';
             exx.style.visibility = 'hidden';
 
             if (!isRunning) {
@@ -372,14 +378,16 @@ function ttemer() {
             clockk.textContent = min + ':' + sec;
         }
         if (min == 45 && sec == 0 && aT) {
+            waitext = 9;
             exx.style.visibility = 'visible';
             isRunning = false;
             let tt = clearInterval(fClera)
             checker();
         }
         if (min == 90 && sec == 0 && aT) {
+            waitext = 30;
+            exxt();
             exx.textContent = '+8';
-            exx.style.visibility = 'visible';
             isRunning = false;
             let tt = clearInterval(fClera)
         }
@@ -483,6 +491,15 @@ function resetbutt() {
         fClera = setInterval(ttemer, 1000);
     }
 
+    
+    if (exisRunning) {
+        exisRunning = false;
+        clearInterval(exfClera);
+        exmin = 0;
+        exsec = 0;
+        pextimer.style.display = 'none';
+    }
+
     document.getElementById('timSec').value = null
     document.getElementById('timMin').value = null
 }
@@ -509,6 +526,15 @@ rBtn.onclick = function () {
     if (isRunning) {
         fClera = setInterval(ttemer, 1000);
     }
+
+    if (exisRunning) {
+        exisRunning = false;
+        clearInterval(exfClera);
+        exmin = 0;
+        exsec = 0;
+        pextimer.style.display = 'none';
+    }
+
 
     document.getElementById('timSec').value = null
     document.getElementById('timMin').value = null
@@ -561,3 +587,44 @@ ss.onclick = function() {
 loadConfigFromURL();
 
 presetter();
+
+function extimer() {
+    if (exisRunning) {
+        exsec++
+        if (exsec >= 60) {
+            exsec = 0;
+            exmin++;
+        }
+        if (exsec < 10 && exmin < 10) {
+            pextimer.textContent = '0' + exmin + ':' + '0' + exsec;
+        }
+        if (exmin < 10 && exsec > 9) {
+            pextimer.textContent = '0' + exmin + ':' + exsec;
+        }
+        if (exmin > 9 && exsec < 10) {
+            pextimer.textContent = exmin + ':' + '0' + exsec;
+        }
+        if (exsec > 9 && exmin > 9) {
+            pextimer.textContent = exmin + ':' + exsec;
+        }
+        if (exmin == waitext && exsec == 0) {
+            waitext = 30;
+            exisRunning = false;
+            clearInterval(exfClera);
+            exmin = 0;
+            exsec = 0;
+            pextimer.style.display = 'none';
+            exx.style.visibility = 'visible';
+            exx.style.display = 'flex';
+        }
+    }
+}
+
+function exxt() {
+    if (!exisRunning) {
+        exisRunning = true;
+        pextimer.style.display = 'flex';
+        exfClera = setInterval(extimer, 1000);
+    }
+}
+
